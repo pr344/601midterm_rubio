@@ -28,4 +28,16 @@ class UserTest extends TestCase
 
         $this -> assertContains("Steve Smith",$user->name);
     }
+
+    public function testDeletetUser()
+    {
+        $user = new User();
+        $user->name = "Carlos Cabrera";
+        $user->email = "carlos_cabrera@yahoo.com";
+        $user->password = password_hash("123456",1);
+        $user->save();
+
+        $this->assertTrue($user->delete());
+    }
+
 }
