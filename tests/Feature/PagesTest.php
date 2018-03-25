@@ -16,4 +16,12 @@ class PagesTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    //test login page is working
+    public function testloginScreen()
+    {
+        $response = $this->get('/login');
+
+        $response->assertStatus(200);
+    }
 }
