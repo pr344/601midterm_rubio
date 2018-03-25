@@ -66,4 +66,23 @@ class CarTest extends TestCase
         //$this -> assertTrue(is_int($year));
 
     }
+
+    public function testMakerCar()
+    {
+        //selects random car
+        $car = Car::inRandomOrder()->first();
+        $maker = $car->Make;
+        $flag=false;
+
+        if ($maker = "Ford"){
+           $flag=true;
+        }elseif ($maker = "Honda"){
+            $flag=true;
+        }elseif ($maker = "Toyota"){
+            $flag=true;
+        }else{
+            $flag=false;
+        }
+        $this->assertTrue($flag);
+    }
 }
