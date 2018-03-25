@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Constraint\IsType;
 use App\Car;
 
 class CarTest extends TestCase
@@ -47,5 +48,22 @@ class CarTest extends TestCase
         $carcount = $car->count();
 
         $this->assertGreaterThanOrEqual(50,$carcount);
+    }
+
+    public function testCarYearInt()
+    {
+        //selects random car
+        $car = Car::inRandomOrder()->first();
+        //dd($car);
+
+        //using Type Casting.  If I try to compare DB vs PHP in failing. Cannot Assert INT vs INTEGER
+        $year = (int)$car->Year;
+
+        $this -> assertInternalType("int",$year);
+
+        //Multiple ways I tried.
+        //$this-> assertInternalType(IsType::TYPE_INT,$year);
+        //$this -> assertTrue(is_int($year));
+
     }
 }
