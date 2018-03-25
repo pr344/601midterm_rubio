@@ -34,4 +34,12 @@ class PagesTest extends TestCase
         $response->assertStatus(200);
     }
 
+    //test about page is working
+    public function testcontactScreen()
+    {
+        $response = $this->get('/contact');
+
+        $response->assertStatus(200);
+    }
+
 }
