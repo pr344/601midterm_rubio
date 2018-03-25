@@ -24,4 +24,14 @@ class PagesTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+
+    //test about page is working
+    public function testaboutScreen()
+    {
+        $response = $this->get('/about');
+
+        $response->assertStatus(200);
+    }
+
 }
