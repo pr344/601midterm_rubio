@@ -42,4 +42,14 @@ class UserTest extends TestCase
 
     }
 
+    //test if DB contains at least 50 users
+    public function testCountUser()
+    {
+        $user = User::All();
+        $usercount = $user->count();
+
+        //$this -> assertInternalType('int',$usercount);
+        $this->assertGreaterThanOrEqual(50,$usercount);
+    }
+
 }
