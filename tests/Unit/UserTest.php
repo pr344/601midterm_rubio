@@ -26,7 +26,7 @@ class UserTest extends TestCase
         //dd($user);
         $user->name = "Steve Smith";
 
-        //$this -> assertContains("Steve Smith",$user->name);
+
         $this->assertTrue($user->update());
     }
 
@@ -48,7 +48,6 @@ class UserTest extends TestCase
         $user = User::All();
         $usercount = $user->count();
 
-        //$this -> assertInternalType('int',$usercount);
         $this->assertGreaterThanOrEqual(50,$usercount);
     }
 
