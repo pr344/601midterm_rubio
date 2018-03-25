@@ -39,4 +39,13 @@ class CarTest extends TestCase
 
         $this->assertTrue($car->delete());
     }
+
+    //test if DB contains at least 50 cars
+    public function testCountCar()
+    {
+        $car = Car::All();
+        $carcount = $car->count();
+
+        $this->assertGreaterThanOrEqual(50,$carcount);
+    }
 }
