@@ -26,7 +26,8 @@ class UserTest extends TestCase
         //dd($user);
         $user->name = "Steve Smith";
 
-        $this -> assertContains("Steve Smith",$user->name);
+        //$this -> assertContains("Steve Smith",$user->name);
+        $this->assertTrue($user->update());
     }
 
     public function testDeletetUser()
@@ -38,6 +39,7 @@ class UserTest extends TestCase
         $user->save();
 
         $this->assertTrue($user->delete());
+
     }
 
 }
