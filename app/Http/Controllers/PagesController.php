@@ -21,5 +21,8 @@ class PagesController extends Controller
         return view('pages.thankyou')->with(compact('email'));
     }
 
+    function about(){
+        return view("pages.about");
+    }
 
 }

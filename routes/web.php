@@ -14,6 +14,7 @@
 Route::get('/','PagesController@home')->name('home');
 Route::get('/contact','PagesController@contact')->name('contact');
 Route::get('/thanks/{name}', 'PagesController@thanks')->name('thanks');
+Route::get('/about', 'PagesController@about')->name('about');
 
 Auth::routes();
 
