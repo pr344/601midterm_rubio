@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 
-class UserTest extends TestCase
+class Userest extends TestCase
 {
     public function testInsertUser()
     {

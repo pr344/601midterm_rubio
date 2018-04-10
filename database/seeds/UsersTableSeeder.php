@@ -13,7 +13,8 @@ class UsersTableSeeder extends Seeder
     {
         //To use the factory model:
         //This seed the users
-        factory(App\User::class,50)->create()->each(function ($u) {
+        factory(App\User::class,50)->create()->each(function ($user) {
+            $user->profile()->save(factory(App\Profile::class)->make());
             // $u->posts()->save(factory(App\Post::class)->make());
         });
     }

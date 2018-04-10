@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Constraint\IsType;
 use App\Car;
 
-class CarTest extends TestCase
+class Carest extends TestCase
 {
     public function testInsertCar()
     {
