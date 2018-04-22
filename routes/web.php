@@ -17,7 +17,14 @@ Route::get('/thanks/{name}', 'PagesController@thanks')->name('thanks');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/home', 'PagesController@home')->name('home');
 
+Route::get('/user/{user_id}/profile/{profile_id}', 'ProfileController@show')->name('profile.show');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resources([
+    'question' => 'QuestionController',
+]);
+
 
