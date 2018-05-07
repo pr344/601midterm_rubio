@@ -1,9 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 use App\Answer;
+use App\Notifications\AnsUpdate;
+use App\Notifications\AnswerNotification;
 use App\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+
 class AnswerController extends Controller
 {
     public function __construct()
@@ -24,7 +28,11 @@ class AnswerController extends Controller
     {
         $answer = new Answer;
         $edit = FALSE;
+
         return view('pages.answerForm', ['answer' => $answer,'edit' => $edit, 'question' =>$question  ]);
+
+
+
     }
     /**
      * Store a newly created resource in storage.
@@ -46,6 +54,15 @@ class AnswerController extends Controller
         $Answer->user()->associate(Auth::user());
         $Answer->question()->associate($question);
         $Answer->save();
+
+        //get ids for notification email
+        $answerID = $Answer->id;
+        $questionID = $question->id;
+        //get email for notification
+        $email= $Answer->getRelation('user')->email;
+
+        Notification::route('mail',$email)->notify (new AnswerNotification($questionID,$answerID));
+
         return redirect()->route('question.show',['question_id' => $question->id])->with('message', 'Saved');
     }
     /**
@@ -69,6 +86,7 @@ class AnswerController extends Controller
     {
         $answer = Answer::find($answer);
         $edit = TRUE;
+
         return view('pages.answerForm', ['answer' => $answer, 'edit' => $edit, 'question'=>$question ]);
     }
     /**
@@ -90,6 +108,12 @@ class AnswerController extends Controller
         $answer = Answer::find($answer);
         $answer->body = $request->body;
         $answer->save();
+
+        //need to get only the answer ID for the email notificaiton.
+        $answerid = $answer->id;
+
+        Notification::route('mail','admin@laraveldev.com')->notify (new AnsUpdate($question,$answerid));
+
         return redirect()->route('answers.show',['question_id' => $question, 'answer_id' => $answer])->with('message', 'Updated');
     }
     /**
@@ -103,5 +127,6 @@ class AnswerController extends Controller
         $answer = Answer::find($answer);
         $answer->delete();
         return redirect()->route('question.show',['question_id' => $question])->with('message', 'Deleted');
+
     }
 }

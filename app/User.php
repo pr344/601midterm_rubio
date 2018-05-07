@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public function profile()
     {
         return $this->hasOne('App\Profile');
@@ -41,5 +42,10 @@ class User extends Authenticatable
     public function answers()
     {
         return $this->hasMany('App\Answer');
+    }
+
+    public function routeNotificationForMail()
+    {
+        return 'email';
     }
 }
